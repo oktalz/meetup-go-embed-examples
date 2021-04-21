@@ -1,0 +1,224 @@
+# Go embed
+
+Zlatko Bratkovic
+20.04.2021
+zbratkovic@haproxy.com
+
+## Embedding - intro
+
+&nbsp;
+
+- introduced in Go 1.16
+- single self-contained binary
+
+    //go:embed
+
+- embed to string, []byte, embed.FS
+
+## Embedding - intro
+
+- embed.FS - read only
+
+.code misc/embed.fs
+
+- ReadDir
+
+.code misc/read-dir.go
+
+
+## Embedding 
+
+&nbsp;
+
+    Project
+     |
+     +- main.go
+     |
+     +- test
+     |  |
+     |  +- test.txt
+
+## Embedding as string
+
+.code example_1/main.go
+
+- go run .
+
+.code example_1/result.txt
+
+## Embedding as []byte
+
+.code example_2/main.go
+
+- go run .
+
+.code example_2/result.txt
+
+## Embedding as file
+
+.code example_3/main.go
+
+- go run .
+
+.code example_3/result.txt
+
+## Embedding as file (by referencing directory)
+
+.code example_4/main.go
+
+- go run .
+
+.code example_4/result.txt
+
+
+## Embedding empty directoy
+
+&nbsp;
+
+    Project
+     |
+     +- main.go
+     | 
+     +- assets
+     |  |
+     |  +- .empty
+
+## Embedding empty directoy
+
+.code example_empty_folder/main.go
+
+- go run .
+
+.code example_empty_folder/result.txt
+
+## Embedding empty directoy
+
+.code example_empty_folder_2/main.go
+
+- go run .
+
+.code example_empty_folder_2/result.txt
+
+
+## Embedding multiple folders
+
+&nbsp;
+
+    Project
+     |
+     +- main.go
+     |
+     +- test
+     |  |
+     |  +- test.txt
+     |
+     +- assets
+     |  |
+     |  +- assets.txt
+
+## Embedding as files (multiple directories)
+
+.code example_5/main.go /START OMIT/,/END OMIT/
+
+- go run .
+
+.code example_5/result.txt
+
+## Embedding source code
+
+&nbsp;
+
+    Project
+     |
+     +- main.go
+     |
+     +- c
+     |  |
+     |  +- hello.c
+     |
+     +- python
+     |  |
+     |  +- hello.py
+     |
+     +- go
+     |  |
+     |  +- hello.go
+
+## Embedding as files (source code)
+
+.code example_code_1/main.go /START OMIT/,/END OMIT/
+
+## Embedding as files (source code - result) \o/
+
+- go run .
+
+.code example_code_1/result.txt
+
+## Embedding as files (go source code - modern repo)
+
+&nbsp;
+
+    Project
+     |
+     +- main.go
+     |
+     +- go
+     |  |
+     |  +- hello.go
+     |  |
+     |  +- go.mod
+
+## Embedding as files (go source code - modern repo) :(
+
+.code example_code_2/main.go /START OMIT/,/END OMIT/
+
+- go run .
+
+.code example_code_2/result.txt
+
+due to how modules are distributed in Go, this is not allowed
+
+## Embedding as files (go source code - modern repo) 'fix'
+
+.code example_code_3/main.go /START OMIT/,/END OMIT/
+
+
+## Embedding as files (go source code - modern repo) 'fix'
+
+- Makefile
+
+.code example_code_3/Makefile
+
+- make
+
+.code example_code_3/result.txt
+
+## Simple http server
+
+&nbsp;
+
+.code http_server/old_way/main.go  /START OMIT/,/END OMIT/
+
+## Simple http server - embed
+
+&nbsp;
+
+.code http_server/main.go  /START OMIT/,/END OMIT/
+
+## Http server - embed
+
+.code http_server-advanced/main.go  /START OMIT/,/END OMIT/
+
+## Improvements/notes
+
+- https://github.com/golang/go/issues/45197 - only documentation will change
+
+.link https://github.com/golang/go/issues/45197 embed: document go.mod exclusion
+
+- https://github.com/golang/go/issues/43854 - accepted proposal
+  
+.link https://github.com/golang/go/issues/43854 add //go:embed all:<pattern> to allow . and _ matches
+
+- https://github.com/golang/go/issues/45447
+
+.link https://github.com/golang/go/issues/45447 files starting with - (dash) are not embedded

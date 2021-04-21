@@ -1,0 +1,2 @@
+example_code_2$ go run .
+main.go:10:12: pattern go: cannot embed directory go: in different module

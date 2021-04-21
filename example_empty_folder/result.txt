@@ -1,0 +1,2 @@
+$ go run .
+main.go:10:17: pattern assets: cannot embed directory assets: contains no embeddable files

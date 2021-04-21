@@ -1,0 +1,19 @@
+example_code_1$ go run .
+-- c --
+#include <stdio.h>
+int main() {
+   printf("Hello, World!");
+   return 0;
+}
+
+-- py --
+print("Hello, World!")
+
+-- go --
+package main
+
+import "fmt"
+
+func main() {
+        fmt.Println("Hello, World!")
+}

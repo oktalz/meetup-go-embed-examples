@@ -1,0 +1,8 @@
+example_code_3$ make
+mv go/go.mod go/go.mod.goembed
+go build -o example
+mv go/go.mod.goembed go/go.mod
+
+example_code_3$ ./example 
+go/go.mod
+go/hello.go
